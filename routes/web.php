@@ -15,16 +15,23 @@ use App\Http\Controllers\Auth\AuthController;
 |
 */
 
+//ログインされてなくても処理される内容
 Route::group(['middleware' => ['guest']], function () {
     // ログインフォーム表示
     Route::get('/', [AuthController::class, 'showLogin'])->name('login.show');
+    //ログイン画面に遷移
+    Route::get('Admin/login', function() {return view('login');})->name('login');
     // ログイン処理
     Route::post('login', [AuthController::class, 'login'])->name('login');
+
   });
   
+  //ログインしていないと処理されない内容
   Route::group(['middleware' => ['auth']], function () {
     // ホーム画面
     Route::get('home', function() {return view('home');})->name('home');
+    // プロフィール
+    Route::get('Admin.profile', function() {return view('profile');})->name('profile');
     // ログアウト
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
   }); 
