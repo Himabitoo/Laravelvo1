@@ -37,7 +37,7 @@ class AuthController extends Controller
 
             if($user->locked_flg === 1){
                 return back()->withErrors([
-                    'danger' => 'アカウントがロックされています。',
+                    'danger' => 'アカウントがロックされています。解除したい場合は運営に連絡してください。',
                 ]);;
             }
             if(Auth::attempt($credentials)){
@@ -59,9 +59,10 @@ class AuthController extends Controller
             if($user->error_count > 5){
 
                 $user->locked_flg = 1;
+                $user->save();
 
                 return back()->withErrors([
-                    'danger' => 'アカウントがロックされました。解除されたい場合は運営に連絡してください。',
+                    'danger' => 'アカウントがロックされました。',
                 ]);;
 
             }
