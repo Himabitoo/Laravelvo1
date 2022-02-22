@@ -9,7 +9,12 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
 class AuthController extends Controller
-{
+{   
+
+    public function __construct(User $user){
+        $this->user = $user;
+    }
+
     /** 
     *   @return View 
     */
@@ -31,11 +36,10 @@ class AuthController extends Controller
         $credentials =  $request->only('email','password');
 
         //アカウントがロックされていたら弾く
-        $user = User::where('email','=',$credentials['email'])->first();
+        $user = $this->user->getUserByEmail($credentials['email']);
 
         if(!is_null($user)){
-
-            if($user->locked_flg === 1){
+            if($this->user->isAccountLocked($user)){
                 return back()->withErrors([
                     'danger' => 'アカウントがロックされています。解除したい場合は運営に連絡してください。',
                 ]);;
@@ -43,26 +47,20 @@ class AuthController extends Controller
             if(Auth::attempt($credentials)){
                 $request->session()->regenerate();
                     //ロック数初期設定が必要な時だけ動かす処理
-                    if($user->error_count > 0){
-                        $user->error_count = 0;
-                        //se
-                        $user->save();
-                    }
+                   $this->user->resetErrorCount($user);
+
                 return redirect()->route('home')->with('login_success','ログイン成功しました。');
             }
 
             //⓷ログイン失敗したらエラーカウントを１増やす
 
-            $user->error_count = $user->error_count + 1;
+            $user->error_count = $this->user->addErrorCount($user->error_count);
 
             //⓸エラーカウントが６以上の場合はアカウントをロックする
-            if($user->error_count > 5){
-
-                $user->locked_flg = 1;
-                $user->save();
+            if($this->user->lockAccount($user)){
 
                 return back()->withErrors([
-                    'danger' => 'アカウントがロックされました。',
+                    'danger' => '数回のログインミスによりアカウントがロックされました。',
                 ]);;
 
             }
@@ -72,7 +70,7 @@ class AuthController extends Controller
         }
 
         return back()->withErrors([
-            'login_error' => 'メールアドレスかパスワードが間違っています。',
+            'login_error' => 'メールアドレスかパスワードが間違っています',
         ]);;
         
     }
