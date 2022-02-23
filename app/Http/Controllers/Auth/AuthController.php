@@ -21,7 +21,7 @@ class AuthController extends Controller
 
     public function showLogin(){
 
-        return view('login.login_form');
+        return view('admin.login_form');
 
     }
 
@@ -49,7 +49,7 @@ class AuthController extends Controller
                     //ロック数初期設定が必要な時だけ動かす処理
                    $this->user->resetErrorCount($user);
 
-                return redirect()->route('home')->with('login_success','ログイン成功しました。');
+                return redirect()->route('profile')->with('login_success','ログイン成功しました。');
             }
 
             //⓷ログイン失敗したらエラーカウントを１増やす
