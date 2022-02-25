@@ -38,7 +38,7 @@ Route::group(['middleware' => ['guest']], function () {
 //ログインしないとアクセスできない
 Route::group(['middleware' => ['auth']], function () {
   // プロフィール画面
-  Route::get('/profile', function() {return view('admin.profile');})->name('profile');
+  Route::get('/profile', [AuthController::class, 'showProfile'])->name('profile');
   // ログアウト処理
   Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 }); 

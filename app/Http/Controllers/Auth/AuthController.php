@@ -15,6 +15,10 @@ class AuthController extends Controller
         $this->user = $user;
     }
 
+    public function showProfile(){
+        return view('admin.profile');
+    }
+
     /** 
     *   @return View 
     */
@@ -24,6 +28,7 @@ class AuthController extends Controller
         return view('admin.login_form');
 
     }
+    
 
     /**
      * @param App\Http\Requests\LoginFormRequest

@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('comment_def', function (Blueprint $table) {
             $table->id();
-            $table->uuid('userCode',100)->unique();
             $table->string('userUid',100);
-            $table->string('name',100);
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->tinyInteger('locked_flg')->default(0);
-            $table->integer('error_count')->unsigned()->default(0);
-            // $table->rememberToken();
+            $table->integer('postId')->unsigned();
+            $table->string('comment',100);
+            $table->integer('likeit')->unsigned()->default(0);
+            $table->integer('dislike')->unsigned()->default(0);
+            $table->integer('report_count')->unsigned()->default(0);
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('comment_def');
     }
 };
