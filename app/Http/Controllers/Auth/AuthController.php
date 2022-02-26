@@ -97,4 +97,7 @@ class AuthController extends Controller
         return redirect()->route('login.show')->with('logout','ログアウトしました');
     }
 
+    // public function 
+
+
 }

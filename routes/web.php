@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\UserController;
 use App\Http\Controllers\PageController;
 
 /*
@@ -19,12 +20,20 @@ use App\Http\Controllers\PageController;
 Route::get('/', [PageController::class, 'showTop'])->name('Top.show');
 //ホームページ
 Route::get('/home', [PageController::class, 'showHome'])->name('Home.show');
+//ホームPOST
+Route::post('home',[UserController::class,'getDef'])->name('Home.post');
 //シリーズ選択ページ
 Route::get('/series', [PageController::class, 'showSeries'])->name('Series.show');
 //かさねぎ一覧
 Route::get('/kasanegi', [PageController::class, 'showKasanegi'])->name('Kasanegi.show');
 //他ユーザーのプロフィール画面
 Route::get('/userProf', [PageController::class, 'showUserProf'])->name('UserProf.show');
+//ブログ
+Route::get('/blog', [PageController::class, 'showBlog'])->name('Blog.show');
+//お問い合わせフォームへアクセス
+Route::get('/contact', [PageController::class, 'showContact'])->name('Contact.show');
+//Register - Page
+Route::get('/register',[PageController::class,'showRegister'])->name('Register.show');
 
 
 //ログインしてたらアクセスできない

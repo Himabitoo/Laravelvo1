@@ -26,4 +26,14 @@ class PageController extends Controller
         return view('userProf');
     }
 
+    public function showBlog(){
+        return view('blog');
+    }
+
+    public function showContact(){
+        return view('contact');
+    }
+    public function showRegister(){
+        return view('register');
+    }
 }

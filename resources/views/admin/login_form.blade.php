@@ -26,6 +26,9 @@
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
     <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
+    <a href="{{ route('Register.show') }}">新規作成</a>
+    <a href="">パスワードをお忘れですか？</a>
   </form>
 </body>
 </html>
+
