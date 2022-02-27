@@ -7219,6 +7219,10 @@ button.bg-dark:focus {
 .text-white {
   color: #fff !important; }
 
+.first-letter-red{
+  color:red;
+}
+
 .text-primary {
   color: #ef6c57 !important; }
 

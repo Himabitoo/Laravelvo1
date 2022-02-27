@@ -572,7 +572,7 @@ h1, h2, h3, h4, h5,
         .site-mobile-menu .site-nav-wrap[data-class="social"] > li:first-child a {
           padding-left: 15px !important; }
 
-/* Blocks */
+/* BlocksRight
 .header-bar {
   float: right;
   width: 250px;
@@ -638,7 +638,78 @@ h1, h2, h3, h4, h5,
       .header-bar ul.social li a {
         padding: 10px; }
       .header-bar ul.social li:last-child a {
+        padding-right: 0; 
+      } */
+
+/* BlocksLeft */
+.header-bar {
+  float: left;
+  width: 250px;
+  height: 100vh;
+  min-height: 400px;
+  overflow: auto;
+  background: #1f222b;
+  padding: 30px;
+  text-align: left;
+  position: fixed;
+  right: 0;
+  top: 0; }
+  @media (max-width: 991.98px) {
+    .header-bar {
+      width: 100%;
+      position: relative;
+      float: none;
+      height: 70px !important;
+      min-height: 70px; } }
+  .header-bar .site-logo {
+    margin-bottom: 30px; }
+    @media (max-width: 991.98px) {
+      .header-bar .site-logo {
+        margin-right: auto;
+        margin-bottom: 0; } }
+    .header-bar .site-logo a {
+      font-size: 20px;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: bold; }
+  .header-bar .main-menu {
+    margin-left: auto; }
+    @media (max-width: 991.98px) {
+      .header-bar .main-menu {
+        display: none; } }
+  .header-bar ul {
+    text-align: left;
+    padding: 0;
+    margin: 0 0 30px 0; }
+    @media (max-width: 991.98px) {
+      .header-bar ul {
+        display: inline-block;
+        margin-bottom: 0; } }
+    .header-bar ul li {
+      list-style: none;
+      margin-bottom: 5px; }
+      @media (max-width: 991.98px) {
+        .header-bar ul li {
+          display: inline-block; } }
+      .header-bar ul li a {
+        display: block;
+        padding: 4px 0;
+        color: #fff;
+        text-transform: uppercase;
+        font-size: .8rem; }
+        @media (max-width: 991.98px) {
+          .header-bar ul li a {
+            padding: 4px 10px; } }
+      .header-bar ul li.active a {
+        color: #ef6c57; }
+    .header-bar ul.social li {
+      display: inline-block; }
+      .header-bar ul.social li a {
+        padding: 10px; }
+      .header-bar ul.social li:last-child a {
         padding-right: 0; }
+
+
 
 .main-content {
   float: left;
@@ -666,7 +737,7 @@ h1, h2, h3, h4, h5,
       right: 0;
       bottom: 0;
       top: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(156, 56, 56, 0.6);
       z-index: 1;
       -webkit-transition: .3s all ease;
       -o-transition: .3s all ease;

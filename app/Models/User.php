@@ -111,4 +111,9 @@ class User extends Authenticatable
     }
 
 
+    public function createAccount(){
+
+        
+    }
+
 }

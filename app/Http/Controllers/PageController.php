@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Controll;
+use App\Models\HomeModel;
+use App\Models\KasanegiModel;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -11,7 +14,8 @@ class PageController extends Controller
     }
 
     public function showHome(){
-        return view('home');
+        $detas = HomeModel::all();
+        return view('home',['detas' => $detas]);
     }
 
     public function showSeries(){
@@ -19,7 +23,8 @@ class PageController extends Controller
     }
 
     public function showKasanegi(){
-        return view('kasanegi');
+        $detas = KasanegiModel::all();
+        return view('kasanegi',['detas' => $detas]);
     }
 
     public function showUserProf(){

@@ -35,7 +35,7 @@
 
   <header class="header-bar d-flex d-lg-block align-items-center" data-aos="fade-left">
     <div class="site-logo">
-      <a href="{{ route('Top.show') }}">KASANEGI.COM</a>
+      <a href="{{ route('Top.show') }}" style="font-size:30px;">重ね着.COM</a>
     </div>
     
     <div class="d-inline-block d-xl-none ml-md-0 ml-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
@@ -45,11 +45,10 @@
         @yield('navi')
       </ul>
       <ul class="social js-clone-nav">
-        <li><a href="#"><span class="icon-facebook"></span></a></li>
-        <li><a href="#"><span class="icon-twitter"></span></a></li>
-        <li><a href="#"><span class="icon-instagram"></span></a></li>
+        <li><a href="https://youtube.com/" target="_blank"><span class="icon-youtube"></span></a></li>
+        <li><a href="https://twitter.com/" target="_blank"><span class="icon-twitter"></span></a></li>
         @guest
-          <li><a href="{{ route('login') }}"><button class="btn btn-danger">ログイン</button></a></li>
+          <li><a href="{{ route('login') }}"><button class="btn btn-primary btn-md text-white">ログイン</button></a></li>
         @endguest
 
         @auth
@@ -58,20 +57,11 @@
       </ul>
     </div>
   </header>
-  
-  <main class="main-content">
-    <div class="container-fluid photos">
-      <div class="row align-items-stretch">
-        
-        @yield('content')
 
-      </div>
+  @yield('content')
 
-    </div>
-  </main>
 
 </div> <!-- .site-wrap -->
-    @include('layout.copyright')
     <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery-migrate-3.0.1.min.js') }}"></script>
     <script src="{{ asset('js/jquery-ui.js') }}"></script>
