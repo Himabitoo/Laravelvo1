@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fancybox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   </head>
   <body>
   
@@ -52,7 +52,10 @@
         @endguest
 
         @auth
-        <li><a href="{{ route('logout') }}"><button>ログアウト</button></a></li>
+          <form action="{{ route('logout') }}" method="post">
+            @csrf
+            <li><input type="submit" value="ログアウト"></li>
+          </form>
         @endauth
       </ul>
     </div>
@@ -75,5 +78,6 @@
     <script src="{{ asset('js/aos.js') }}"></script>
     <script src="{{ asset('js/jquery.fancybox.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     </body>
 </html>

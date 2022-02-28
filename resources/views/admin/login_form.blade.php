@@ -13,11 +13,15 @@
   <form class="form-signin" method="POST" action="{{ route('login') }}">
     @csrf
     <h1 class="h3 mb-3 font-weight-normal">ログインフォーム </h1>
-    @foreach ($errors->all() as $error)
-    <ul class="alert alert-danger">
-      <li>{{$error}}</li>
-    </ul>
-    @endforeach
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        @foreach ($errors->all() as $error)
+          <ul class="alert alert-danger">
+            <li>{{$error}}</li>
+          </ul>
+        @endforeach
+      </div>
+    @endif
     <x-alert type="danger" :session="session('logout')"/>
     <x-alert type="danger" :session="session('danger')"/>
 

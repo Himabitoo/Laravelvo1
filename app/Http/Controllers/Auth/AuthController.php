@@ -51,6 +51,7 @@ class AuthController extends Controller
             }
             if(Auth::attempt($credentials)){
                 $request->session()->regenerate();
+                
                     //ロック数初期設定が必要な時だけ動かす処理
                    $this->user->resetErrorCount($user);
 
@@ -99,5 +100,8 @@ class AuthController extends Controller
 
     // public function 
 
+    public function showUploadKasanegi(){
+        return view('admin.upKasanegi');
+    }
 
 }

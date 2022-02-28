@@ -28,11 +28,6 @@ Route::get('/userProf', [PageController::class, 'showUserProf'])->name('UserProf
 Route::get('/blog', [PageController::class, 'showBlog'])->name('Blog.show');
 //お問い合わせフォームへアクセス
 Route::get('/contact', [PageController::class, 'showContact'])->name('Contact.show');
-//Register - Page
-Route::get('/register',[PageController::class,'showRegister'])->name('Register.show');
-//新規作成-値の送信
-Route::post('/register',[PostController::class,'Register'])->name('RegisterPost.show');
-
 
 //ログインしてたらアクセスできない
 Route::group(['middleware' => ['guest']], function () {
@@ -40,6 +35,10 @@ Route::group(['middleware' => ['guest']], function () {
   Route::get('/login', [AuthController::class, 'showLogin'])->name('login.show');
   // ログイン処理
   Route::post('login', [AuthController::class, 'login'])->name('login');
+  //Register - Page
+  Route::get('/register',[PageController::class,'showRegister'])->name('Register.show');
+  //新規作成-値の送信
+  Route::post('register',[PostController::class,'createUser'])->name('register');
 });
 
 //ログインしないとアクセスできない
@@ -48,5 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile', [AuthController::class, 'showProfile'])->name('profile');
   // ログアウト処理
   Route::post('logout', [AuthController::class, 'logout'])->name('logout');
+  //アップロード画面
+  Route::get('/upload/kasanegi',[AuthController::class,'showUploadKasanegi'])->name('upKasanegi.show');
 }); 
 

@@ -14,7 +14,7 @@
       <div class="row pt-4 mb-5 text-center">
         <div class="col-12">
           <h2 class="text-white mb-4">重ね着作品集 - あなたの作った重ね着をアップロードしてみよう！</h2>
-          <a href=""><button class="btn btn-primary btn-md text-white">アップロード</button></a>
+          <a href="{{ route('upKasanegi.show') }}"><button class="btn btn-primary btn-md text-white">アップロード</button></a>
         </div>
       </div>
 
