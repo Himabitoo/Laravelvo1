@@ -159,6 +159,20 @@ return [
         'userUid' => 'ユーザーID',
         'firstName' => '姓',
         'lastName' => '名',
+        'subject' => '要件',
+        'message' => '内容',
+
+        'file' => 'ファイル',
+        'sex' => '性別',
+        'series' => 'モンハンシリーズ',
+        'head' => '頭(防具)',
+        'body' => '胴(防具)',
+        'arm' => '腕(防具)',
+        'waist' => '腰(防具)',
+        'foot' => '脚(防具)',
+        'concept' => 'コンセプト',
+        'images' => '画像ファイル',
+    
     ],
 
 ];

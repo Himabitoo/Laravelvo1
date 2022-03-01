@@ -28,6 +28,8 @@ Route::get('/userProf', [PageController::class, 'showUserProf'])->name('UserProf
 Route::get('/blog', [PageController::class, 'showBlog'])->name('Blog.show');
 //お問い合わせフォームへアクセス
 Route::get('/contact', [PageController::class, 'showContact'])->name('Contact.show');
+//お問い合わせフォーム値の送信
+ROute::post('contact',[PostController::class,'sendContact'])->name('contact');
 
 //ログインしてたらアクセスできない
 Route::group(['middleware' => ['guest']], function () {
@@ -49,5 +51,7 @@ Route::group(['middleware' => ['auth']], function () {
   Route::post('logout', [AuthController::class, 'logout'])->name('logout');
   //アップロード画面
   Route::get('/upload/kasanegi',[AuthController::class,'showUploadKasanegi'])->name('upKasanegi.show');
+  //重ね着のアップロード実行
+  Route::post('upKa',[PostController::class,'uploadKasanegi'])->name('kasanegi.up');
 }); 
 

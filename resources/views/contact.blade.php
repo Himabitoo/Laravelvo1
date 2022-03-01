@@ -20,16 +20,27 @@
               <p class="mb-5">＊マークは記入必須項目です。入力されたものは当サイトの向上のために使用されるものであり、第三者への公開を目的としたものではありません。<a href="#">利用規約</a></p>
              <div class="row">
                 <div class="col-md-12">               
-                  <form action="#">     
-                                  
+                  <form action="{{ route('contact') }}" method="post">
+                    @csrf     
+                    
+                    @if ($errors->any())
+                      <div class="alert alert-danger">
+                        @foreach ($errors->all() as $error)
+                          <ul>
+                            <li>{{$error}}</li>
+                          </ul>
+                        @endforeach
+                      </div>
+                    @endif
+
                     <div class="row form-group">
                       <div class="col-md-6 mb-3 mb-md-0">
                         <label class="text-white" for="fname">＊姓 / First Name</label>
-                        <input type="text" id="fname" class="form-control">
+                        <input name="firstName" type="text" id="fname" class="form-control">
                       </div>
                       <div class="col-md-6">
                         <label class="text-white" for="lname">＊名 / Last Name</label>
-                        <input type="text" id="lname" class="form-control">
+                        <input name="lastName" type="text" id="lname" class="form-control">
                       </div>
                     </div>
 
@@ -37,7 +48,7 @@
                       
                       <div class="col-md-12">
                         <label class="text-white" for="email">＊メールアドレス / Email</label> 
-                        <input type="email" id="email" class="form-control">
+                        <input name="email" type="email" id="email" class="form-control">
                       </div>
                     </div>
 
@@ -45,7 +56,7 @@
                       
                       <div class="col-md-12">
                         <label class="text-white " for="subject">＊要件 / Subject</label> 
-                        <input type="subject" id="subject" class="form-control">
+                        <input name="subject" type="subject" id="subject" class="form-control">
                       </div>
                     </div>
 

@@ -101,7 +101,7 @@ class AuthController extends Controller
     // public function 
 
     public function showUploadKasanegi(){
-        return view('admin.upKasanegi');
+        return view('admin.upka');
     }
 
 }
