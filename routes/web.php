@@ -52,6 +52,6 @@ Route::group(['middleware' => ['auth']], function () {
   //アップロード画面
   Route::get('/upload/kasanegi',[AuthController::class,'showUploadKasanegi'])->name('upKasanegi.show');
   //重ね着のアップロード実行
-  Route::post('upKa',[PostController::class,'uploadKasanegi'])->name('kasanegi.up');
+  Route::post('/upload/kasanegi',[PostController::class,'uploadKasanegi'])->name('kasanegi.up');
 }); 
 

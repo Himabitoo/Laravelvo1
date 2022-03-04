@@ -10,6 +10,7 @@ use App\Models\KasanegiModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -43,36 +44,43 @@ class PostController extends Controller
     }
 
     public function uploadKasanegi(KasanegiFormRequest $request)
-    {       
-        $Kasanegidb = new KasanegiModel();
+    {   
         
+
+        $d = 1;//[1-5]
+        $i = 0;//[0-4]
+        //楽用
+        $Kasanegidb = new KasanegiModel();
+        //配列で受け取った画像データを$imagesにぶち込む
         $images = $request->file('images');
 
+        //$imagesの配列を順に$imageに移す
         foreach($images as $image){
-            $image->storeAS('images','');
-
+            
+            //保存している
+	        $path = Storage::putFile('/public',$image);
+            //ファイル指定
+            $path = explode('/',$path);
+            // //テーブル複数
+            $table_name = 'img'.$d;
+            $Kasanegidb->$table_name = $path[1];
+            
+            $d++;
         }
-        // // $Kasanegidb->img1 = $path;
-        // // $Kasanegidb->img2 = $images[1];
-        // // $Kasanegidb->img3 = $images[2];
-        // // $Kasanegidb->img4 = $images[3];
-        // // $Kasanegidb->img5 = $images[4];
-        // // $Kasanegidb->img6 = $images[5];
-        // $Kasanegidb->userUid = Auth::user()->userUid;
-        // $Kasanegidb->img1 = $request->file;
-        // $Kasanegidb->series = $request->series;
-        // $Kasanegidb->concept = $request->concept;
-        // $Kasanegidb->comment = $request->comment;
-        // $Kasanegidb->sex = $request->sex;
-        // $Kasanegidb->head = $request->head;
-        // $Kasanegidb->body = $request->body;
-        // $Kasanegidb->arm = $request->arm;
-        // $Kasanegidb->waist = $request->waist;
-        // $Kasanegidb->foot = $request->foot;
 
-        // $Kasanegidb->save();
+        $Kasanegidb->userUid = Auth::user()->userUid;
+        $Kasanegidb->series = $request->series;
+        $Kasanegidb->concept = $request->concept;
+        $Kasanegidb->comment = $request->comment;
+        $Kasanegidb->sex = $request->sex;
+        $Kasanegidb->head = $request->head;
+        $Kasanegidb->body = $request->body;
+        $Kasanegidb->arm = $request->arm;
+        $Kasanegidb->waist = $request->waist;
+        $Kasanegidb->foot = $request->foot;
+        $Kasanegidb->save();
 
-        // redirect()->route('Kasanegi.show')->with('successTheUploadKasanegi','投稿されました！');
+        return redirect()->route('upKasanegi.show')->with('success','無事アップロードされました！');
         
     }
 
