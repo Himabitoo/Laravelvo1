@@ -10,19 +10,29 @@
       
 <main class="main-content">
     <div class="container-fluid photos">
-      <div class="row align-items-stretch">
-        
-        <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-          <a href="single.html" class="d-block photo-item">
-            <img src="images/img_4.jpg" alt="Image" class="img-fluid">
-              <div class="photo-text-more">
-                <div class="photo-text-more">
-                  <h3 class="heading">Photos Title Here</h3>
-                  <span class="meta">42 Photos</span>
-              </div>
-            </div>
-          </a>
+
+      <div class="row pt-4 mb-5 text-center">
+        <div class="col-12">
+          <h2 class="text-white mb-4">モンハン画像集</h2>
+          <a href="{{ route('upDef.show') }}"><button class="btn btn-primary btn-md text-white">アップロード</button></a>
         </div>
+      </div>
+
+      <div class="row align-items-stretch">
+        @foreach($detas as $deta)
+          <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
+            <a href="{{ url('home/'.$deta->id); }}" class="d-block photo-item">
+              <img src="{{ asset('storage/'.$deta->thumbnail) }}" alt="Image" class="img-fluid">
+                <div class="photo-text-more">
+                  <div class="photo-text-more">
+                    <h3 class="heading">{{ $deta->title }}</h3>
+                    <span class="meta">{{ $deta->image_count }} 枚の写真</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        @endforeach
+
         <!-- <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
           <a href="single.html" class="d-block photo-item">
             <img src="images/img_5.jpg" alt="Image" class="img-fluid">

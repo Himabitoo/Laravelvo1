@@ -104,4 +104,8 @@ class AuthController extends Controller
         return view('admin.upka');
     }
 
+    public function showUploadDef(){
+        return view('admin.upde');
+    }
+
 }

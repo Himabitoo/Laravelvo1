@@ -20,6 +20,8 @@ use App\Http\Controllers\PageController;
 Route::get('/', [PageController::class, 'showTop'])->name('Top.show');
 //ホームページ
 Route::get('/home', [PageController::class, 'showHome'])->name('Home.show');
+//コメントDef
+Route::get('/home/{id}',[PageController::class,'showHomeComment'])->name('HomeComment.show');
 //かさねぎ一覧
 Route::get('/kasanegi', [PageController::class, 'showKasanegi'])->name('Kasanegi.show');
 //他ユーザーのプロフィール画面
@@ -29,7 +31,7 @@ Route::get('/blog', [PageController::class, 'showBlog'])->name('Blog.show');
 //お問い合わせフォームへアクセス
 Route::get('/contact', [PageController::class, 'showContact'])->name('Contact.show');
 //お問い合わせフォーム値の送信
-ROute::post('contact',[PostController::class,'sendContact'])->name('contact');
+Route::post('contact',[PostController::class,'sendContact'])->name('contact');
 
 //ログインしてたらアクセスできない
 Route::group(['middleware' => ['guest']], function () {
@@ -49,9 +51,14 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/profile', [AuthController::class, 'showProfile'])->name('profile');
   // ログアウト処理
   Route::post('logout', [AuthController::class, 'logout'])->name('logout');
-  //アップロード画面
+  //重ね着アップロード画面
   Route::get('/upload/kasanegi',[AuthController::class,'showUploadKasanegi'])->name('upKasanegi.show');
   //重ね着のアップロード実行
   Route::post('/upload/kasanegi',[PostController::class,'uploadKasanegi'])->name('kasanegi.up');
+  //重ね着アップロード画面
+  Route::get('/upload/def',[AuthController::class,'showUploadDef'])->name('upDef.show');
+  //重ね着のアップロード実行
+  Route::post('/upload/def',[PostController::class,'uploadDef'])->name('Def.up');
+  
 }); 
 

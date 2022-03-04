@@ -21,8 +21,8 @@
       <div class="row align-items-stretch">
         @foreach ($detas as $deta) 
           <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="{{ asset('images/'.$deta->image1) }}" class="d-block photo-item" data-fancybox="gallery">
-              <img src="{{ asset('storage/'.$deta->img1) }}" alt="Image" class="img-fluid">
+            <a href="{{ asset('storage/'.$deta->thumbnail) }}" class="d-block photo-item" data-fancybox="gallery">
+              <img src="{{ asset('storage/'.$deta->thumbnail) }}" alt="Image" class="img-fluid">
               <div class="photo-text-more">
                 <span class="icon icon-search"></span>
               </div>

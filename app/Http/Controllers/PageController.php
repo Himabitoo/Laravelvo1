@@ -41,4 +41,7 @@ class PageController extends Controller
     public function showRegister(){
         return view('register');
     }
+    public function showHomeComment(){
+        return view('CoDe');
+    }
 }

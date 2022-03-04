@@ -116,6 +116,7 @@ return [
         'file'    => ':attributeのファイルは、:sizeキロバイトでなくてはなりません。',
         'string'  => ':attributeは:size文字で指定してください。',
         'array'   => ':attributeは:size個指定してください。',
+        'images'   => ':attributeは:size個指定してください。',
     ],
     'starts_with'          => ':attributeには、:valuesのどれかで始まる値を指定してください。',
     'string'               => ':attributeは文字列を指定してください。',
@@ -172,6 +173,7 @@ return [
         'foot' => '脚(防具)',
         'concept' => 'コンセプト',
         'images' => '画像ファイル',
+        'thumbnail' =>'サムネイル',
     
     ],
 

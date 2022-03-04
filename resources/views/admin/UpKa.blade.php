@@ -41,7 +41,24 @@
                       </div>
                     @endif
                     
-                    <p>＊最低１枚、最大６枚を一度にアップロードできます。<a href="#">利用規約</a></p>
+                    <br>
+                    
+                    <p>＊サムネイルを指定してください</p>
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                      </div>
+                      <div class="custom-file">
+                          
+                        <input name="thumbnail" type="file" class="custom-file-input" id="inputGroupFile01"
+                          aria-describedby="inputGroupFileAddon01"  multiple="multiple">
+                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                      </div>
+                    </div>
+
+                    <br>
+
+                    <p>＊アップロードする画像を参照してください。最低１枚、最大６枚を一度にアップロードできます。<a href="#">利用規約</a></p>
                     <div class="input-group">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
