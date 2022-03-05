@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Controll;
+use App\Models\HomeCommentModel;
 use App\Models\HomeModel;
 use App\Models\KasanegiModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -38,10 +40,17 @@ class PageController extends Controller
     public function showContact(){
         return view('contact');
     }
+
     public function showRegister(){
         return view('register');
     }
-    public function showHomeComment(){
-        return view('CoDe');
+
+    public function showHomeComment($id)
+    {
+        $detas = HomeModel::findOrFail($id);
+        $user_id = $detas->userUid;
+        $user = DB::table('users')->where('userUid',$user_id)->first();
+    
+        return view('CoDe',['detas'=> $detas,'user'=>$user]);
     }
 }

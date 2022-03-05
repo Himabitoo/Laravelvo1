@@ -88,7 +88,7 @@ class PostController extends Controller
         $Kasanegidb->arm = $request->arm;
         $Kasanegidb->waist = $request->waist;
         $Kasanegidb->foot = $request->foot;
-        $Kasanegidb->image_count = $image_count;
+        $Kasanegidb->image_count = $image_count + 1;
         $Kasanegidb->save();
 
         return redirect()->route('upKasanegi.show')->with('success','無事アップロードされました！');
@@ -131,7 +131,7 @@ class PostController extends Controller
         $Defdb->series = $request->series;
         $Defdb->title = $request->title;
         $Defdb->comment = $request->comment;
-        $Defdb->image_count = $image_count;
+        $Defdb->image_count = $image_count + 1;
         $Defdb->save();
 
         return redirect()->route('upDef.show')->with('success','無事アップロードされました！');
