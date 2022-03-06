@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class KasanegiFormRequest extends FormRequest
+class PostKasanegiCommentFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,7 @@ class KasanegiFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'thumbnail'=>'required',
-            'images' => 'required|max:20',
-            'series' => 'required',
-            'sex' => 'required',
-            'head' => 'required',
-            'body' => 'required',
-            'arm' => 'required',
-            'waist' => 'required',
-            'foot' => 'required',
-            'concept' => 'required',
+            'comment' => 'required',
         ];
     }
 }

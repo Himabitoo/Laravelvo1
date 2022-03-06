@@ -23,55 +23,22 @@
           <div class="row">
             <div class="col-md-12" data-aos="fade-up">
               <div class="d-flex blog-entry align-items-start">
-                <div class="mr-5 img-wrap"><a href="#"><img src="images/blog_1.jpg" alt="Image" class="img-fluid"></a></div>
+                <div class="mr-5 img-wrap"><a href="#"><img src="" alt="Image" class="img-fluid"></a></div>
                 <div>
-                  <h2 class="mt-0 mb-2"><a href="#">Advanced Photography Tutorial For Pro</a></h2>
-                  <div class="meta mb-3">Posted by James on <a href="#">Feb. 24, 2020</a></div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis aliquid doloremque qui, saepe alias eum?</p>
+                  <h2 class="mt-0 mb-2"><a href="#">サイト作るの大変やな。</a></h2>
+                  <div class="meta mb-3">投稿日：<a href="#">2022/03/05</a></div>
+                  <p>完成はまだまだ先だよ。</p>
                 </div>
               </div>
             </div>
-
-            <div class="col-md-12" data-aos="fade-up">
-              <div class="d-flex blog-entry align-items-start">
-                <div class="mr-5 img-wrap"><a href="#"><img src="images/blog_1.jpg" alt="Image" class="img-fluid"></a></div>
-                <div>
-                  <h2 class="mt-0 mb-2"><a href="#">Advanced Photography Tutorial For Pro</a></h2>
-                  <div class="meta mb-3">Posted by James on <a href="#">Feb. 24, 2020</a></div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis aliquid doloremque qui, saepe alias eum?</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-12" data-aos="fade-up">
-              <div class="d-flex blog-entry align-items-start">
-                <div class="mr-5 img-wrap"><a href="#"><img src="images/blog_1.jpg" alt="Image" class="img-fluid"></a></div>
-                <div>
-                  <h2 class="mt-0 mb-2"><a href="#">Advanced Photography Tutorial For Pro</a></h2>
-                  <div class="meta mb-3">Posted by James on <a href="#">Feb. 24, 2020</a></div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis aliquid doloremque qui, saepe alias eum?</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-md-12" data-aos="fade-up">
-              <div class="d-flex blog-entry align-items-start">
-                <div class="mr-5 img-wrap"><a href="#"><img src="images/blog_1.jpg" alt="Image" class="img-fluid"></a></div>
-                <div>
-                  <h2 class="mt-0 mb-2"><a href="#">Advanced Photography Tutorial For Pro</a></h2>
-                  <div class="meta mb-3">Posted by James on <a href="#">Feb. 24, 2020</a></div>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis aliquid doloremque qui, saepe alias eum?</p>
-                </div>
-              </div>
-            </div>  
 
             <div class="col-12 text-center">
               <div class="custom-pagination">
                 <span>1</span>
-                <a href="#">2</a>
+                <!-- <a href="#">2</a>
                 <a href="#">3</a>
                 <span>...</span>
-                <a href="#">7</a>
+                <a href="#">7</a> -->
               </div>
             </div>
           </div>

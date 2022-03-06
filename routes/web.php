@@ -24,6 +24,8 @@ Route::get('/home', [PageController::class, 'showHome'])->name('Home.show');
 Route::get('/home/{id}',[PageController::class,'showHomeComment'])->name('HomeComment.show');
 //かさねぎ一覧
 Route::get('/kasanegi', [PageController::class, 'showKasanegi'])->name('Kasanegi.show');
+//コメントDef
+Route::get('/kasanegi/{id}',[PageController::class,'showKasanegiComment'])->name('KasanegiComment.show');
 //他ユーザーのプロフィール画面
 Route::get('/userProf', [PageController::class, 'showUserProf'])->name('UserProf.show');
 //ブログ
@@ -55,10 +57,14 @@ Route::group(['middleware' => ['auth']], function () {
   Route::get('/upload/kasanegi',[AuthController::class,'showUploadKasanegi'])->name('upKasanegi.show');
   //重ね着のアップロード実行
   Route::post('/upload/kasanegi',[PostController::class,'uploadKasanegi'])->name('kasanegi.up');
-  //重ね着アップロード画面
+  //ホームアップロード画面
   Route::get('/upload/def',[AuthController::class,'showUploadDef'])->name('upDef.show');
-  //重ね着のアップロード実行
+  //ホームのアップロード実行
   Route::post('/upload/def',[PostController::class,'uploadDef'])->name('Def.up');
+  //コメント処理Def
+  Route::resource('/commentDef',HomeCommentController::class);
+  //コメント処理Kasanegi
+  // Route::resourece('/commentKasanegi',[CommentController::class]);
   
 }); 
 

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="{{ asset('css/aos.css') }}">
     <link rel="stylesheet" href="{{ asset('css/fancybox.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
   </head>
   <body>
   
@@ -54,7 +54,7 @@
         @auth
           <form action="{{ route('logout') }}" method="post">
             @csrf
-            <li><input type="submit" value="ログアウト"></li>
+            <li><input type="submit" value="ログアウト" class="btn btn-primary btn-md text-white"></li>
           </form>
         @endauth
       </ul>

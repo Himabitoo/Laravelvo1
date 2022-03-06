@@ -11,13 +11,14 @@ use App\Models\HomeModel;
 use App\Models\KasanegiModel;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function createUser(RegisterFormRequest $request){
-
+    public function createUser(RegisterFormRequest $request)
+    {
         //コンストラクト化
         $Userdb = new User();
     
@@ -95,8 +96,8 @@ class PostController extends Controller
         
     }
 
-    public function uploadDef(DefFormRequest $request){
- 
+    public function uploadDef(DefFormRequest $request)
+    {
         $Defdb = new HomeModel();
 
         $d = 1;//[1-5]
@@ -135,7 +136,6 @@ class PostController extends Controller
         $Defdb->save();
 
         return redirect()->route('upDef.show')->with('success','無事アップロードされました！');
-
 
     }
 

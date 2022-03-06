@@ -1,5 +1,5 @@
 @extends('layout.master')
-@section('title','重ね着写真集')
+@section('title','かさネギ.com - 重ね着写真集')
 @section('navi')
   <li><a href="{{ route('Home.show') }}" style="font-size:20px;">ホーム</a></li>
   <li class="active"><a href="{{ route('Kasanegi.show') }}" style="font-size:20px;">重ね着写真集</a></li>
@@ -19,12 +19,15 @@
       </div>
 
       <div class="row align-items-stretch">
-        @foreach ($detas as $deta) 
+        @foreach($detas as $deta)
           <div class="col-6 col-md-6 col-lg-4" data-aos="fade-up">
-            <a href="{{ asset('storage/'.$deta->thumbnail) }}" class="d-block photo-item" data-fancybox="gallery">
+            <a href="{{ url('kasanegi/'.$deta->id); }}" class="d-block photo-item">
               <img src="{{ asset('storage/'.$deta->thumbnail) }}" alt="Image" class="img-fluid">
-              <div class="photo-text-more">
-                <span class="icon icon-search"></span>
+                <div class="photo-text-more">
+                  <div class="photo-text-more">
+                    <h3 class="heading">{{ $deta->concept }}</h3>
+                    <span class="meta">{{ $deta->image_count }} 枚の写真</span>
+                </div>
               </div>
             </a>
           </div>

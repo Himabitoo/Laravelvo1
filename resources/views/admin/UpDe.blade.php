@@ -19,7 +19,7 @@
           
             <div class="row mb-5" data-aos="fade-up">
                 <div class="col-12">
-                  <h2 class="text-black mb-4 text-center">モンハン画像アップロードページ</h2>
+                  <h2 class="text-white mb-4 text-center">モンハン画像アップロードページ</h2>
                 </div>
             </div>
 
@@ -58,14 +58,12 @@
                     <br>
 
                     <p>＊アップロードする画像を参照してください。最低１枚、最大20枚を一度にアップロードできます。<a href="#">利用規約</a></p>
-                    <div class="input-group">
+                    <div class="input-group mb-3">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                       </div>
                       <div class="custom-file">
-                          
-                        <input name="images[]" type="file" class="custom-file-input" id="inputGroupFile01"
-                          aria-describedby="inputGroupFileAddon01"  multiple="multiple">
+                        <input name="images[]" multiple="multiple" type="file" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01">
                         <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
                       </div>
                     </div>
