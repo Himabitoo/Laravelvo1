@@ -55,7 +55,7 @@ class PageController extends Controller
             $detas->save();   
         // }
 
-        $comments = DB::table('comment_def')->where('postId',$id);
+        $comments = DB::table('comment_def')->where('postId',$id)->get();
 
         $user = DB::table('users')->where('userUid',$user_id)->first();
     
@@ -73,9 +73,11 @@ class PageController extends Controller
             $detas->save();
         // }
 
+        $comments = DB::table('comment_kasanegi')->where('postId',$id)->get();
+
         $user = DB::table('users')->where('userUid',$user_id)->first();
     
-        return view('CoKa',['detas'=> $detas,'user'=>$user]);
+        return view('CoKa',['detas'=> $detas,'user'=>$user,'comments'=> $comments,'id'=>$id ]);
     }
 
 }

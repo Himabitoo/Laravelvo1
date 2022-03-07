@@ -28,6 +28,16 @@
             お気に入り
           </button>
         </p>
+
+        <div class="">
+          <h3>モンハンシリーズ：{{ $detas->series}}</h3>
+          <h3>--装備紹介--</h3>
+          <h3>頭：{{$detas->head}}</h3>
+          <h3>胴：{{$detas->body}}</h3>
+          <h3>腕：{{$detas->arm}}</h3>
+          <h3>腰：{{$detas->waist}}</h3>
+          <h3>脚：{{$detas->foot}}</h3>
+        </div>
       </div>
     </div>
 
@@ -53,6 +63,25 @@
              </div>
             <?php $image_num++ ?>
         @endfor
+        </div>
+
+        <div class="col-md-12">
+          
+          <form  action="{{ route('KasanegiCreateComment',['id' => $detas->id]) }}" method="post" enctype="multipart/form-data">
+          @csrf
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1">コメント欄</label>
+                <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+            <input type="submit" value="コメント" class="btn btn-danger">
+          </form>
+          
+          @foreach ($comments as $comment)
+            <div class="">
+              <h3>{{ $comment->userUid }}</h3>
+              <p>{{ $comment->comment }}</p>
+            </div>
+          @endforeach
         </div>
 
       <div class="row justify-content-center">

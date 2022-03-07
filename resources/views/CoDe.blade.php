@@ -53,9 +53,9 @@
             <?php $image_num++ ?>
         @endfor
         </div>
-        <div class="col-md-12">
+        <div class="pull-right col-md-5 col-sm">
           
-          <form  action="{{ route('commentDef.store',['post_id'=> $detas->id]) }}" method="post" enctype="multipart/form-data">
+          <form  action="{{ route('DefCreateComment',['id' => $detas->id]) }}" method="post" enctype="multipart/form-data">
           @csrf
               <div class="form-group">
                 <label for="exampleFormControlTextarea1">コメント欄</label>
@@ -63,8 +63,16 @@
               </div>
             <input type="submit" value="コメント" class="btn btn-danger">
           </form>
-
+          
+          @foreach ($comments as $comment)
+            <div class="">
+              <h3>{{$comment->userUid}}</h3>
+              <p>{{ $comment->comment }}</p>
+            </div>
+          @endforeach
         </div>
+        
+
               
       <div class="row justify-content-center">
         <div class="col-md-12 text-center py-5">

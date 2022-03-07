@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\PostController;
+use App\Http\Controllers\HomeCommentController;
+use App\Http\Controllers\KasanegiCommentController;
 use App\Http\Controllers\PageController;
 
 /*
@@ -36,7 +38,8 @@ Route::get('/contact', [PageController::class, 'showContact'])->name('Contact.sh
 Route::post('contact',[PostController::class,'sendContact'])->name('contact');
 
 //ログインしてたらアクセスできない
-Route::group(['middleware' => ['guest']], function () {
+Route::group(['middleware' => ['guest']], function () 
+{
   // ログインフォーム表示
   Route::get('/login', [AuthController::class, 'showLogin'])->name('login.show');
   // ログイン処理
@@ -48,7 +51,8 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 //ログインしないとアクセスできない
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth']], function () 
+{
   // プロフィール画面
   Route::get('/profile', [AuthController::class, 'showProfile'])->name('profile');
   // ログアウト処理
@@ -62,9 +66,9 @@ Route::group(['middleware' => ['auth']], function () {
   //ホームのアップロード実行
   Route::post('/upload/def',[PostController::class,'uploadDef'])->name('Def.up');
   //コメント処理Def
-  Route::resource('/commentDef',HomeCommentController::class);
+  Route::post('/home/{id}/comment',[HomeCommentController::class,'postDefComment'])->name('DefCreateComment');
   //コメント処理Kasanegi
-  // Route::resourece('/commentKasanegi',[CommentController::class]);
+  Route::post('/kasanegi/{id}/comment',[KasanegiCommentController::class,'postKasanegiComment'])->name('KasanegiCreateComment'); 
   
 }); 
 
