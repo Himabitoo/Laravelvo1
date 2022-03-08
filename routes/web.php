@@ -70,5 +70,6 @@ Route::group(['middleware' => ['auth']], function ()
   //コメント処理Kasanegi
   Route::post('/kasanegi/{id}/comment',[KasanegiCommentController::class,'postKasanegiComment'])->name('KasanegiCreateComment'); 
   
+
 }); 
 
