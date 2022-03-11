@@ -50,10 +50,21 @@ class PageController extends Controller
         $detas = HomeModel::findOrFail($id);
         $user_id = $detas->userUid;
 
-        // if ($authUser !== $user_id) {
+        //ログイン状態だったら
+        if(Auth::check()){
+
+            $authUser = Auth::user()->userUid;
+
+            if( $authUser !== $user_id)
+            {
+                $detas->watch_count = $detas->watch_count + 1;
+                $detas->save();
+            }
+            
+        }else{
             $detas->watch_count = $detas->watch_count + 1;
-            $detas->save();   
-        // }
+            $detas->save();
+        }
 
         $comments = DB::table('comment_def')->where('postId',$id)->get();
 
@@ -64,14 +75,24 @@ class PageController extends Controller
 
     public function showKasanegiComment($id)
     {   
-        // $authUser = Auth::user()->userUid;
         $detas = KasanegiModel::findOrFail($id);
         $user_id = $detas->userUid;
+        
+        //ログイン状態だったら
+        if(Auth::check()){
 
-        // if($authUser !== $user_id){
+            $authUser = Auth::user()->userUid;
+
+            if( $authUser !== $user_id)
+            {
+                $detas->watch_count = $detas->watch_count + 1;
+                $detas->save();
+            }
+
+        }else{
             $detas->watch_count = $detas->watch_count + 1;
             $detas->save();
-        // }
+        }
 
         $comments = DB::table('comment_kasanegi')->where('postId',$id)->get();
 

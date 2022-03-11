@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\Auth\PostController;
 use App\Http\Controllers\HomeCommentController;
 use App\Http\Controllers\KasanegiCommentController;
@@ -48,6 +49,12 @@ Route::group(['middleware' => ['guest']], function ()
   Route::get('/register',[PageController::class,'showRegister'])->name('Register.show');
   //新規作成-値の送信
   Route::post('register',[PostController::class,'createUser'])->name('register');
+
+
+  //ソーシャルログインリダイレクトgoogle
+  Route::get('/google/redirect',[GoogleLoginController::class,'redirectToGoogle'])->name('Google.redirect');
+  //ソーシャルコールバック
+  Route::get('/google/callback',[GoogleLoginController::class,'GoogleCallback'])->name('GoogleCallBack');
 });
 
 //ログインしないとアクセスできない

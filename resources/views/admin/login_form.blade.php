@@ -32,6 +32,9 @@
     <button class="btn btn-lg btn-primary btn-block" type="submit">ログイン</button>
     <a href="{{ route('Register.show') }}">新規作成</a>
     <a href="">パスワードをお忘れですか？</a>
+    <div class="mt-2">
+      <a href="{{ route('Google.redirect') }}" class="btn btn-outline-primary">Googleアカウントでサインイン</a>
+    </div>
   </form>
 </body>
 </html>
