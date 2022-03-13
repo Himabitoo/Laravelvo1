@@ -66,9 +66,12 @@ class PageController extends Controller
             $detas->save();
         }
 
-        $comments = DB::table('comment_def')->where('postId',$id)->get();
+        $comments = DB::table('comment_def')->join('users','comment_def.userUid','=','users.userUid')
+                                            ->where('postId',$id)->get();
 
-        $user = DB::table('users')->where('userUid',$user_id)->first();
+        $user = DB::table('users')->select('iconURL','accountName')
+                                  ->where('userUid',$user_id)
+                                  ->first();
     
         return view('CoDe',['detas'=> $detas,'user'=>$user,'comments'=> $comments,'id'=> $id]);
     }
@@ -94,9 +97,12 @@ class PageController extends Controller
             $detas->save();
         }
 
-        $comments = DB::table('comment_kasanegi')->where('postId',$id)->get();
+        $comments = DB::table('comment_kasanegi')->join('users','comment_kasanegi.userUid','=','users.userUid')
+                                                 ->where('postId',$id)->get();
 
-        $user = DB::table('users')->where('userUid',$user_id)->first();
+        $user = DB::table('users')->select('iconURL','accountName')
+                                  ->where('userUid',$user_id)
+                                  ->first();
     
         return view('CoKa',['detas'=> $detas,'user'=>$user,'comments'=> $comments,'id'=>$id ]);
     }

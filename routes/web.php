@@ -30,7 +30,7 @@ Route::get('/kasanegi', [PageController::class, 'showKasanegi'])->name('Kasanegi
 //コメントDef
 Route::get('/kasanegi/{id}',[PageController::class,'showKasanegiComment'])->name('KasanegiComment.show');
 //他ユーザーのプロフィール画面
-Route::get('/userProf', [PageController::class, 'showUserProf'])->name('UserProf.show');
+Route::get('/user/{userUid}', [PageController::class, 'showUserProf'])->name('UserProf.show');
 //ブログ
 Route::get('/blog', [PageController::class, 'showBlog'])->name('Blog.show');
 //お問い合わせフォームへアクセス
