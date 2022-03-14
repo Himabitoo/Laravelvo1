@@ -61,15 +61,17 @@ class PageController extends Controller
                 $detas->save();
             }
             
-        }else{
+        }
+        else{
             $detas->watch_count = $detas->watch_count + 1;
             $detas->save();
         }
 
-        $comments = DB::table('comment_def')->join('users','comment_def.userUid','=','users.userUid')
+        $comments = DB::table('comment_def')->select('comment_def.id','comment_def.userUid','users.accountName','users.iconURL','comment_def.comment','comment_def.likeit')
+                                            ->join('users','comment_def.userUid','=','users.userUid')
                                             ->where('postId',$id)->get();
 
-        $user = DB::table('users')->select('iconURL','accountName')
+        $user = DB::table('users')->select('iconURL','accountName',)
                                   ->where('userUid',$user_id)
                                   ->first();
     
@@ -92,19 +94,21 @@ class PageController extends Controller
                 $detas->save();
             }
 
-        }else{
+        }
+        else{
             $detas->watch_count = $detas->watch_count + 1;
             $detas->save();
         }
 
-        $comments = DB::table('comment_kasanegi')->join('users','comment_kasanegi.userUid','=','users.userUid')
+        $comments = DB::table('comment_kasanegi')->select('comment_kasanegi.id','comment_kasanegi.userUid','users.accountName','users.iconURL','comment_kasanegi.comment','comment_kasanegi.likeit')
+                                                 ->join('users','comment_kasanegi.userUid','=','users.userUid')
                                                  ->where('postId',$id)->get();
 
         $user = DB::table('users')->select('iconURL','accountName')
                                   ->where('userUid',$user_id)
                                   ->first();
     
-        return view('CoKa',['detas'=> $detas,'user'=>$user,'comments'=> $comments,'id'=>$id ]);
+        return view('CoKa',['detas'=> $detas,'user'=> $user,'comments'=> $comments,'id'=>$id ]);
     }
 
 }

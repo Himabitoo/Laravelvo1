@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\Auth\PostController;
+use App\Http\Controllers\DislikeController;
 use App\Http\Controllers\HomeCommentController;
 use App\Http\Controllers\KasanegiCommentController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PageController;
 
 /*
@@ -77,6 +79,51 @@ Route::group(['middleware' => ['auth']], function ()
   //コメント処理Kasanegi
   Route::post('/kasanegi/{id}/comment',[KasanegiCommentController::class,'postKasanegiComment'])->name('KasanegiCreateComment'); 
   
+  //いいね機能ルーティング
+  Route::controller(LikeController::class)->group(function(){
+
+    //HOME系ページでのいいね機能
+    Route::prefix('/home')->group(function(){
+    
+      Route::post('/{id}/like','HomeLikeCreate')->name('HomeLike.create');
+      
+      Route::post('/{id}/comment/like','HomeCommentLikeCreate')->name('HomeCommentLike.create');
+      
+    });
+
+    //重ね着系ページに対していいね機能
+    Route::prefix('/kasanegi')->group(function(){
+      
+      Route::post('/{id}/like','KasanegiLikeCreate')->name('KasanegiLike.create');
+      
+      Route::post('/{id}/comment/like','KasanegiCommentLikeCreate')->name('KasanegiCommentLike.create');
+
+    });
+  });
+
+
+
+  //低評価機能ルーティング
+  Route::controller(DislikeController::class)->group(function(){
+
+    //HOME系ページでの低評価機能
+    Route::prefix('/home')->group(function(){
+    
+      Route::post('/{id}/dislike','HomeLikeCreate')->name('HomeLike.create');
+      
+      Route::post('/{id}/comment/dislike','HomeCommentLikeCreate')->name('HomeCommentLike.create');
+      
+    });
+
+    //重ね着系ページでの低評価機能
+    Route::prefix('/kasanegi')->group(function(){
+      
+      Route::post('/{id}/dislike','KasanegiLikeCreate')->name('KasanegiLike.create');
+      
+      Route::post('/{id}/comment/dislike','KasanegiCommentLikeCreate')->name('KasanegiCommentLike.create');
+
+    });
+  });
 
 }); 
 
