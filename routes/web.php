@@ -5,10 +5,12 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\GoogleLoginController;
 use App\Http\Controllers\Auth\PostController;
 use App\Http\Controllers\DislikeController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\HomeCommentController;
 use App\Http\Controllers\KasanegiCommentController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ReportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,22 +23,27 @@ use App\Http\Controllers\PageController;
 |
 */
 
-//kasanegi.comに接続したら最初にアクセスされるページ
-Route::get('/', [PageController::class, 'showTop'])->name('Top.show');
-//ホームページ
-Route::get('/home', [PageController::class, 'showHome'])->name('Home.show');
-//コメントDef
-Route::get('/home/{id}',[PageController::class,'showHomeComment'])->name('HomeComment.show');
-//かさねぎ一覧
-Route::get('/kasanegi', [PageController::class, 'showKasanegi'])->name('Kasanegi.show');
-//コメントDef
-Route::get('/kasanegi/{id}',[PageController::class,'showKasanegiComment'])->name('KasanegiComment.show');
-//他ユーザーのプロフィール画面
-Route::get('/user/{userUid}', [PageController::class, 'showUserProf'])->name('UserProf.show');
-//ブログ
-Route::get('/blog', [PageController::class, 'showBlog'])->name('Blog.show');
-//お問い合わせフォームへアクセス
-Route::get('/contact', [PageController::class, 'showContact'])->name('Contact.show');
+Route::controller(PageController::class)->group(function()
+{
+  //kasanegi.comに接続したら最初にアクセスされるページ
+  Route::get('/','showTop')->name('Top.show');
+  //ホームページ
+  Route::get('/home','showHome')->name('Home.show');
+  //コメントDef
+  Route::get('/home/{id}','showHomeComment')->name('HomeComment.show');
+  //かさねぎ一覧
+  Route::get('/kasanegi','showKasanegi')->name('Kasanegi.show');
+  //コメントDef
+  Route::get('/kasanegi/{id}','showKasanegiComment')->name('KasanegiComment.show');
+  //他ユーザーのプロフィール画面
+  Route::get('/user/{userUid}','showUserProf')->name('UserProf.show');
+  //ブログ
+  Route::get('/blog', 'showBlog')->name('Blog.show');
+  //お問い合わせフォームへアクセス
+  Route::get('/contact','showContact')->name('Contact.show');
+
+});
+
 //お問い合わせフォーム値の送信
 Route::post('contact',[PostController::class,'sendContact'])->name('contact');
 
@@ -83,8 +90,8 @@ Route::group(['middleware' => ['auth']], function ()
   Route::controller(LikeController::class)->group(function(){
 
     //HOME系ページでのいいね機能
-    Route::prefix('/home')->group(function(){
-    
+    Route::prefix('/home')->group(function()
+    {
       Route::post('/{id}/like','HomeLikeCreate')->name('HomeLike.create');
       
       Route::post('/{id}/comment/like','HomeCommentLikeCreate')->name('HomeCommentLike.create');
@@ -92,8 +99,8 @@ Route::group(['middleware' => ['auth']], function ()
     });
 
     //重ね着系ページに対していいね機能
-    Route::prefix('/kasanegi')->group(function(){
-      
+    Route::prefix('/kasanegi')->group(function()
+    {
       Route::post('/{id}/like','KasanegiLikeCreate')->name('KasanegiLike.create');
       
       Route::post('/{id}/comment/like','KasanegiCommentLikeCreate')->name('KasanegiCommentLike.create');
@@ -101,28 +108,54 @@ Route::group(['middleware' => ['auth']], function ()
     });
   });
 
-
-
   //低評価機能ルーティング
-  Route::controller(DislikeController::class)->group(function(){
-
+  Route::controller(DislikeController::class)->group(function()
+  {
     //HOME系ページでの低評価機能
     Route::prefix('/home')->group(function(){
     
-      Route::post('/{id}/dislike','HomeLikeCreate')->name('HomeLike.create');
+      Route::post('/{id}/dislike','HomeDislikeCreate')->name('HomeDislike.create');
       
-      Route::post('/{id}/comment/dislike','HomeCommentLikeCreate')->name('HomeCommentLike.create');
+      Route::post('/{id}/comment/dislike','HomeCommentDislikeCreate')->name('HomeCommentDislike.create');
       
     });
 
     //重ね着系ページでの低評価機能
     Route::prefix('/kasanegi')->group(function(){
       
-      Route::post('/{id}/dislike','KasanegiLikeCreate')->name('KasanegiLike.create');
+      Route::post('/{id}/dislike','KasanegiDislikeCreate')->name('KasanegiDislike.create');
       
-      Route::post('/{id}/comment/dislike','KasanegiCommentLikeCreate')->name('KasanegiCommentLike.create');
+      Route::post('/{id}/comment/dislike','KasanegiCommentDislike')->name('KasanegiCommentDislike.create');
 
     });
+  });
+
+  //お気に入りルーティング
+  Route::controller(FavoriteController::class)->group(function()
+  {
+    //Home投稿に対してのお気に入り機能
+    Route::post('/home/{id}/favorite','HomeFavoriteCreate')->name('HomeFavorite.create');
+    //Kasanegi投稿に対してのお気に入り機能
+    Route::post('/kasanegi/{id}/favorite','KasanegiFavoriteCreate')->name('KasanegiFavorite.create');
+  });
+
+  //報告ルーティング
+  Route::controller(ReportController::class)->group(function(){
+
+    Route::prefix('/home')->group(function(){
+      //Home投稿に対しての報告
+      Route::post('/{id}/report','HomeReport')->name('HomeReport.create');
+      //Homeコメントに対しての報告
+      Route::post('/{id}/comment/report','HomeCommentReport')->name('HomeCommentReport.create');
+    });
+
+    Route::prefix('/kasanegi')->group(function(){
+      //重ね着投稿に対しての報告
+      Route::post('/{id}/report','KasanegiReport')->name('KasanegiReport.create');
+      //重ね着コメントに対しての報告
+      Route::post('/{id}/comment/report','KasanegiCommentReport')->name('KasanegiCommentReport.create');
+    });
+    
   });
 
 }); 

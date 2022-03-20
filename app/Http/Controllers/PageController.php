@@ -67,7 +67,7 @@ class PageController extends Controller
             $detas->save();
         }
 
-        $comments = DB::table('comment_def')->select('comment_def.id','comment_def.userUid','users.accountName','users.iconURL','comment_def.comment','comment_def.likeit')
+        $comments = DB::table('comment_def')->select('comment_def.id','comment_def.userUid','users.accountName','users.iconURL','comment_def.comment','comment_def.likeit','comment_def.dislike')
                                             ->join('users','comment_def.userUid','=','users.userUid')
                                             ->where('postId',$id)->get();
 
@@ -100,7 +100,7 @@ class PageController extends Controller
             $detas->save();
         }
 
-        $comments = DB::table('comment_kasanegi')->select('comment_kasanegi.id','comment_kasanegi.userUid','users.accountName','users.iconURL','comment_kasanegi.comment','comment_kasanegi.likeit')
+        $comments = DB::table('comment_kasanegi')->select('comment_kasanegi.id','comment_kasanegi.userUid','users.accountName','users.iconURL','comment_kasanegi.comment','comment_kasanegi.likeit','comment_kasanegi.dislike')
                                                  ->join('users','comment_kasanegi.userUid','=','users.userUid')
                                                  ->where('postId',$id)->get();
 
